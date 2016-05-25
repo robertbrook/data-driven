@@ -18,19 +18,21 @@ class ApplicationController < ActionController::Base
   	# render :text => kirsty.resources[0]
   	# render :text => kirsty.hasRegisteredInterests.first.belongsTo
 
-  	@topic = Concept.find('http://data.parliament.uk/resource/96680000-0000-0000-0000-000000000002')
-    @questionsTotalFromConcept = @topic.questions.count
-    @members = @topic.questions.map{ |q| q.tablingMember }
+  	# @topic = Concept.find('http://data.parliament.uk/resource/96680000-0000-0000-0000-000000000002')
+   #  @questionsTotalFromConcept = @topic.questions.count
+   #  @members = @topic.questions.map{ |q| q.tablingMember }
 
     #render :text => questions
     #render :text => members[7]
 
-    @member = Person.find('http://data.parliament.uk/resource/34530000-0000-0000-0000-000000000001')
-    @questionsTotalFromMember = @member.questionsTabled.count
-    @topics = @member.questionsTabled.map{ |q| q.subject }
+    # @member = Person.find('http://data.parliament.uk/resource/34530000-0000-0000-0000-000000000001')
+    # @questionsTotalFromMember = @member.questionsTabled.count
+    # @topics = @member.questionsTabled.map{ |q| q.subject }
 
     #render :text => questions.first
     #render :text => topics.first
+
+    @concepts = Concept.all.limit(40).resources
   end
 
 end

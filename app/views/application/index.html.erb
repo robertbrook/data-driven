@@ -1,29 +1,10 @@
-<h2>Concept -> Member</h2>
-<p>
-	For the topic <%= @topic.label %>, there are <%= @questionsTotalFromConcept %> questions. 
-</p>
-<p>
-	The following members have tabled these questions:
-	<ul>
-		<% @members.map{ |member| member.name }.uniq.each do |name| %>
-			<li>
-				<%= name %>
-			</li>
-		<% end %>
-	</ul>
-</p>
-
-<h2>Member -> Concept</h2>
-<p>
-	The member <%= @member.name %> has tabled <%= @questionsTotalFromMember%> questions.
-</p>
-<p>
-	These questions relate to the following topics:
-	<ul>
-		<% @topics.map{ |topic| topic.label }.uniq.each do |topic| %>
-			<li>
-				<%= topic %>
-			</li>
-		<% end %>
-	</ul>
-</p>
+<h2>Concept</h2>
+<ul>
+	<% @concepts.each do |concept| %>
+		<li>
+			<%= link_to members_path do %>
+				<%= concept.label %>
+			<% end %>
+		</li>
+	<% end %>
+</ul>
