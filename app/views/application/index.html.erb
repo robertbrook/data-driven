@@ -1,8 +1,8 @@
-<h2>Concept</h2>
+<h2>Concepts</h2>
 <ul>
 	<% @concepts.each do |concept| %>
 		<li>
-			<%= link_to members_path do %>
+			<%= link_to concept_members_path(concept.id) do %>
 				<%= concept.label %>
 			<% end %>
 		</li>

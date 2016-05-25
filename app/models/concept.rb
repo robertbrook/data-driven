@@ -8,4 +8,8 @@ class Concept
 
   linked_from :questions, :subject, class_name: 'Question'
 
+  def id
+  	self.uri.to_s.split("/").last
+  end
+
 end
