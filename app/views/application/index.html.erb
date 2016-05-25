@@ -1,6 +1,6 @@
 <h2>Concept -> Member</h2>
 <p>
-	For the topic <%= @topic.label %>, there are <%= @questionsTotal %> questions. 
+	For the topic <%= @topic.label %>, there are <%= @questionsTotalFromConcept %> questions. 
 </p>
 <p>
 	The following members have tabled these questions:
@@ -15,5 +15,15 @@
 
 <h2>Member -> Concept</h2>
 <p>
-	The member <%= @member.name %>
+	The member <%= @member.name %> has tabled <%= @questionsTotalFromMember%> questions.
+</p>
+<p>
+	These questions relate to the following topics:
+	<ul>
+		<% @topics.map{ |topic| topic.label }.uniq.each do |topic| %>
+			<li>
+				<%= topic %>
+			</li>
+		<% end %>
+	</ul>
 </p>
