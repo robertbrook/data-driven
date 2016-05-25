@@ -18,6 +18,9 @@ Rails.application.routes.draw do
     resources :members
   end
 
+  resources :members do
+    resources :concepts
+  end
   # Example resource route with options:
   #   resources :products do
   #     member do

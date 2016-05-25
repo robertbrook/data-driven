@@ -9,4 +9,7 @@ class Person
 
   linked_from :questionsTabled, :tablingMember, class_name: 'Question'
 
+  def id
+  	self.uri.to_s.split("/").last
+  end
 end

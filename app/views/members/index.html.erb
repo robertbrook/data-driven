@@ -2,7 +2,7 @@
 <ul>
 	<% @members.each do |member| %>
 		<li>
-			<%= link_to root_path(member) do %>
+			<%= link_to member_concepts_path(member.id) do %>
 				<%= member.name %>
 			<% end %>
 		</li>
