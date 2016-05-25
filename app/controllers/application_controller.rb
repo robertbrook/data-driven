@@ -18,58 +18,23 @@ class ApplicationController < ActionController::Base
   	# render :text => kirsty.resources[0]
   	# render :text => kirsty.hasRegisteredInterests.first.belongsTo
 
-  	topic = Concept.find('http://data.parliament.uk/resource/96680000-0000-0000-0000-000000000002')
-    questions = topic.questions
-    members = questions.map{ |q| q.tablingMember }
+  	@topic = Concept.find('http://data.parliament.uk/resource/96680000-0000-0000-0000-000000000002')
+    @questionsTotal = @topic.questions.count
+    @members = @topic.questions.map{ |q| q.tablingMember }
 
     #render :text => questions
-    render :text => members[7]
+    #render :text => members[7]
 
-
-    member = Person.find('http://data.parliament.uk/resource/34530000-0000-0000-0000-000000000001')
+    @member = Person.find('http://data.parliament.uk/resource/34530000-0000-0000-0000-000000000001')
     #questions = member.questionsTabled.resources
-    topics = member.questionsTabled.map{ |q| q.subject }
+    topics = @member.questionsTabled.map{ |q| q.subject }
 
     #render :text => questions.first
     #render :text => topics.first
   end
-end
-
-class Person
-
-  include Tripod::Resource
-
-  rdf_type 'http://schema.org/Person'
-
-  field :name, 'http://schema.org/name'
-  field :image, 'http://schema.org/image'
-
-  linked_from :questionsTabled, :tablingMember, class_name: 'Question'
 
 end
 
-class Question
-
-  include Tripod::Resource
-
-  rdf_type 'http://data.parliament.uk/schema/parl#WrittenParliamentaryQuestion'
-
-  linked_to :tablingMember, 'http://data.parliament.uk/schema/parl#tablingMember', class_name: 'Person'
-  linked_to :subject, 'http://purl.org/dc/terms/subject', class_name: 'Concept'
-
-end
-
-class Concept
-
-  include Tripod::Resource
-
-  rdf_type 'http://www.w3.org/2004/02/skos/core#Concept'
-
-  field :label, 'http://www.w3.org/2004/02/skos/core#prefLabel'
-
-  linked_from :questions, :subject, class_name: 'Question'
-
-end
 
 # class Person
 # 	include Tripod::Resource

@@ -1,0 +1,19 @@
+<h2>Concept -> Member</h2>
+<p>
+	For the topic <%= @topic.label %>, there are <%= @questionsTotal %> questions. 
+</p>
+<p>
+	The following members have tabled these questions:
+	<ul>
+		<% @members.map{ |member| member.name }.uniq.each do |name| %>
+			<li>
+				<%= name %>
+			</li>
+		<% end %>
+	</ul>
+</p>
+
+<h2>Member -> Concept</h2>
+<p>
+	The member <%= @member.name %>
+</p>
