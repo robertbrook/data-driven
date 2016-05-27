@@ -6,7 +6,7 @@ class Concept
 
   field :label, 'http://www.w3.org/2004/02/skos/core#prefLabel'
 
-  linked_from :questions, :subject, class_name: 'Question'
+  linked_from :questions, :subject, class_name: 'Question', :field_name => :subjectId
 
   def id
   	self.uri.to_s.split("/").last
