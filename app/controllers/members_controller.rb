@@ -1,10 +1,11 @@
 class MembersController < ApplicationController
 
 	def index
-		uri = "http://data.parliament.uk/resource/#{params[:concept_id]}"
-		concept = Concept.find(uri)
-		concept.eager_load_object_triples!
-		@members = concept.questions.map{ |q| q.tablingMember }.uniq
+		concept_uri = "http://data.parliament.uk/resource/#{params[:concept_id]}"
+		# @members = concept.questions.map{ |q| q.tablingMember }.uniq
+		@members = Person.find_by_sparql("SELECT DISTINCT ?uri WHERE {?question <http://data.parliament.uk/schema/parl#tablingMember> ?uri ;
+															    		  <http://purl.org/dc/terms/subject> <#{concept_uri}> .} LIMIT 100")
 	end
 
 end
+
